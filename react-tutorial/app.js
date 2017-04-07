@@ -33,5 +33,29 @@ class ChannelList extends React.Component{
   }
 }
 
+// Channel form for entering a new channel
+class ChannelForm extends React.Component{
+    render(){
+      return(
+        <form>
+          <input type="text" />
+        </form>
+      )
+
+    }
+}
+
+// Root component that includes ChannelList and ChannelForm
+class ChannelSection extends React.Component {
+  render() {
+    return (
+      <div>
+        <ChannelList channels={channels}/>
+        <ChannelForm/>
+      </div>
+    )
+  }
+}
+
 // Render component <Channel/> to div with id:app
-ReactDOM.render(<ChannelList channels={channels} />, document.getElementById('app'));
+ReactDOM.render(<ChannelSection/>, document.getElementById('app'));
