@@ -2,10 +2,10 @@
 class Channel extends React.Component{
   render(){
     return(
-      <li>Channel Names</li>
+      <li>{this.props.name}</li>
     )
   }
 }
 
 // Render component <Channel/> to div with id:app
-ReactDOM.render(<Channel/>, document.getElementById('app'));
+ReactDOM.render(<Channel name="Hardware Support"/>, document.getElementById('app'));
