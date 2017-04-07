@@ -13,5 +13,25 @@ class Channel extends React.Component{
   }
 }
 
+let channels = [
+  {name: 'Hardware Support'},
+  {name: 'Software Support'}
+];
+
+// Parent component of Channel
+class ChannelList extends React.Component{
+  render(){
+    return(
+      <ul>
+        {this.props.channels.map(channel => {
+          return (
+            <Channel name={channel.name}/>
+          )
+        })}
+      </ul>
+    )
+  }
+}
+
 // Render component <Channel/> to div with id:app
-ReactDOM.render(<Channel name="Hardware Support"/>, document.getElementById('app'));
+ReactDOM.render(<ChannelList channels={channels} />, document.getElementById('app'));
