@@ -35,14 +35,45 @@ class ChannelList extends React.Component{
 
 // Channel form for entering a new channel
 class ChannelForm extends React.Component{
+
+    constructor(props){
+      super(props);
+      this.state = {}; // since the first the page loads, this.state is null.
+    }
+
+    onChange(e) {
+      // this.state.channelName = e.target.value won't work
+      this.setState({
+        channelName: e.target.value
+      });
+      console.log(e.target.value);
+    }
+
+    onSubmit(e) { // e: event
+      // let channelName = this.state.channelName;
+      // or the new syntax:
+      let {channelName} = this.state;
+      console.log(channelName);
+
+      channels.push({
+        name: channelName
+      });
+
+      // need setState to update text input's value
+      this.setState({
+        channelName: ''
+      });
+
+      e.preventDefault(); // prevent from submitting the form via http
+    }
+
     render(){
       return(
-        <form>
-          <input type="text" />
+        <form onSubmit={this.onSubmit.bind(this)}>
+          <input type="text" onChange={this.onChange.bind(this)} value={this.state.channelName}/>
         </form>
       )
-
-    }
+   }
 }
 
 // Root component that includes ChannelList and ChannelForm
