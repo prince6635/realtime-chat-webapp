@@ -1,4 +1,6 @@
-# Realtime-chat-webapp
+# Realtime Chat Web App
+- docs/app-overview.jpg
+
 * React (mainly a concept and a library just secondly, only for UI):
     * Fast
     * Virtual Dom
@@ -15,6 +17,9 @@
         $ cd react-tutorial
         $ serve
         ```
+        * pass values between components: this.props.someAttr
+        * how to access what was typed into the input field?
+            * store the keyed value in the "State object": need to use this.setState ("this.state.xxx = xxx" won't work)
 
 * Tools
     * [Babel](https://babeljs.io/): transfer latest JS code syntax to ES2015
