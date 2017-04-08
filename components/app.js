@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import ChannelSection from './channels/channel-section'
 import UserSection from "./users/user-section";
+import MessageSection from "./messages/message-section";
 
 class App extends Component{
 
@@ -11,7 +12,8 @@ class App extends Component{
       channels: [], // otherwise, it'd be null when the page is first loaded
       activeChannel: {},
       users: [],
-      activeUser: {}
+      activeUser: {},
+      messages: []
     };
   }
 
@@ -44,6 +46,14 @@ class App extends Component{
 
     // TODO: get User's messages
   }
+
+  addMessage(value) {
+    let {messages} = this.state;
+    messages.push({id: messages.length, userName: this.state.activeUser.name, value});
+    this.setState({messages});
+
+    // TODO: send to server
+  }
   
   render(){
     return (
@@ -60,6 +70,13 @@ class App extends Component{
             {...this.state}
             setUser={this.setUser.bind(this)}
             addUser={this.addUser.bind(this)}/>
+        </div>
+
+        <div className="messages-container">
+          <MessageSection
+            currentChannel={this.state.activeChannel}
+            messages={this.state.messages}
+            addMessage={this.addMessage.bind(this)}/>
         </div>
       </div>
     )
