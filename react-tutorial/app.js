@@ -13,11 +13,6 @@ class Channel extends React.Component{
   }
 }
 
-let channels = [
-  {name: 'Hardware Support'},
-  {name: 'Software Support'}
-];
-
 // Parent component of Channel
 class ChannelList extends React.Component{
   render(){
@@ -55,14 +50,12 @@ class ChannelForm extends React.Component{
       let {channelName} = this.state;
       console.log(channelName);
 
-      channels.push({
-        name: channelName
-      });
-
       // need setState to update text input's value
       this.setState({
         channelName: ''
       });
+
+      this.props.addChannel(channelName);
 
       e.preventDefault(); // prevent from submitting the form via http
     }
@@ -77,12 +70,39 @@ class ChannelForm extends React.Component{
 }
 
 // Root component that includes ChannelList and ChannelForm
+// Best place to store the channels object, since it's a common parent
+/* how's the ChannelForm going to add a channel and show in ChannelList?
+ *  1, create a addChannel() function in the ChannelSection
+ *  2, pass the addChannel() function to the ChannelForm as a property
+ *  3, in the ChannelForm's onSubmit() handler, call the passed addChannel() function
+ */
 class ChannelSection extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      channels: [
+        {name: 'Hardware Support'},
+        {name: 'Software Support'}
+      ]
+    };
+  }
+
+  addChannel(name){
+    let {channels} = this.state;
+    channels.push({name: name});
+    this.setState(
+      {
+        channels: channels
+      }
+    );
+  }
+
   render() {
     return (
       <div>
-        <ChannelList channels={channels}/>
-        <ChannelForm/>
+        <ChannelList channels={this.state.channels}/>
+        <ChannelForm addChannel={this.addChannel.bind(this)}/>
       </div>
     )
   }
