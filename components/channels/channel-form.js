@@ -16,8 +16,10 @@ class ChannelForm extends Component{
   render(){
     return(
       <form onSubmit={this.onSubmit.bind(this)}>
-        {/*use ref to reference a DOM object instead of state object to access the typed input*/}
-        <input type="text" ref="channel"/>
+        <div className="form-group">
+          {/*use ref to reference a DOM object instead of state object to access the typed input*/}
+          <input className="form-control" type="text" ref="channel"/>
+        </div>
       </form>
     )
   }

@@ -5,11 +5,16 @@ import ChannelList from './channel-list'
 class ChannelSection extends Component{
   render(){
     return (
-      <div>
-        {/*<ChannelList channels={this.props.channels} setChannel={this.props.setChannel}/>*/}
-        {/*new sytax*/}
-        <ChannelList {...this.props}/>
-        <ChannelForm {...this.props}/>
+      <div className="support panel panel-primary">
+        <div className="panel-heading">
+          <strong>Channels</strong>
+        </div>
+        <div className="panel-body channelss">
+          {/*<ChannelList channels={this.props.channels} setChannel={this.props.setChannel}/>*/}
+          {/*new sytax*/}
+          <ChannelList {...this.props}/>
+          <ChannelForm {...this.props}/>
+        </div>
       </div>
     )
   }
