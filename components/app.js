@@ -32,7 +32,9 @@ class App extends Component{
       <div className="app">
         <div className="nav">
           <ChannelSection
-            channels={this.state.channels}
+            // channels={this.state.channels}
+            // activeChannel={this.state.activeChannel}
+            {...this.state}
             setChannel={this.setChannel.bind(this)}
             addChannel={this.addChannel.bind(this)}/>
         </div>

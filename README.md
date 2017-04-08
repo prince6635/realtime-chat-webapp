@@ -52,5 +52,7 @@
                 * $ npm install react --save-dev
                 * $ npm install react-dom --save
                 * channel-form.js: use ref instead of state object o access the typed input
+                * highlight the selected channel: need to set <li className="active"...> inside channel.js
+                    * since we already save the active channel in state object, just need to pass as prop then use "activeChannel===channel"
 * Tools
     * [Babel](https://babeljs.io/): transfer latest JS code syntax to ES2015
