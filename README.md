@@ -26,7 +26,7 @@
             * 2, pass the addChannel() function to the ChannelForm as a property
             * 3, in the ChannelForm's onSubmit() handler, call the passed addChannel() function
     * Project structure: docs/project-structure.jpg
-        * Front end build setup
+        * Front end build setup (docs/frontend-build-process.jpg)
             * tools: browserify & webpack(*)
             * running webpack: build the dependency of all JSX files and convert them to ES2015 syntax with babel
             ```
@@ -43,6 +43,14 @@
             $ npm install webpack-dev-server -g
             $ webpack-dev-server
             ```
-
+            * component hierarchy:
+                * app.js =>
+                    * user-section.js
+                    * channel-section.js
+                    * msg-section.js
+            * create Channel, ChannelList, ChannelForm, ChannelSection components following the project structure
+                * $ npm install react --save-dev
+                * $ npm install react-dom --save
+                * channel-form.js: use ref instead of state object o access the typed input
 * Tools
     * [Babel](https://babeljs.io/): transfer latest JS code syntax to ES2015
