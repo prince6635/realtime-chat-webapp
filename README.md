@@ -25,6 +25,24 @@
             * 1, create a addChannel() function in the ChannelSection
             * 2, pass the addChannel() function to the ChannelForm as a property
             * 3, in the ChannelForm's onSubmit() handler, call the passed addChannel() function
+    * Project structure: docs/project-structure.jpg
+        * Front end build setup
+            * tools: browserify & webpack(*)
+            * running webpack: build the dependency of all JSX files and convert them to ES2015 syntax with babel
+            ```
+            $ npm install webpack -g
+            $ webpack <entryfile> <outputfile>
+            ex: $ webpack ./index.js bundle.js
+
+            if don't want to webpack as above, create the config file: webpack.config.js
+            $ npm uninstall webpack babel-loader@5.3.3 --save-dev
+            remember to install an older loader to avoid existing bugs.
+            $ webpack
+
+            this will automatically re-build the bundle.js file
+            $ npm install webpack-dev-server -g
+            $ webpack-dev-server
+            ```
 
 * Tools
     * [Babel](https://babeljs.io/): transfer latest JS code syntax to ES2015
