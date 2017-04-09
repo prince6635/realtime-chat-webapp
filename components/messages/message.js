@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
-import Time from 'react-time'
+import fecha from 'fecha';
 
 class Message extends Component{
 
   render(){
-    const {message} = this.props;
-    let now = new Date();
+    let {message} = this.props;
+    let createdAt = fecha.format(message.createdAt, "HH:mm:ss YYYY/MM/DD");
 
     return (
-      <li>
-        <p><b>{message.userName}</b>{' '}<Time value={now} titleFormat="YYYY/MM/DD HH:mm" /></p>
-        <br/>
-        <p>{message.value}</p>
+      <li className="message">
+        <div className="author">
+          <strong>{message.author}</strong>
+          <i className="timestamp">{createdAt}</i>
+        </div>
+        <div className="body">{message.body}</div>
       </li>
     )
   }

@@ -17,10 +17,9 @@
   },
   "homepage": "https://github.com/prince6635/realtime-chat-webapp#readme",
   "dependencies": {
-    "moment": "^2.18.1",
+    "fecha": "^2.3.0",
     "react": "^15.4.2",
-    "react-dom": "^15.5.3",
-    "react-time": "^4.2.0"
+    "react-dom": "^15.5.3"
   },
   "devDependencies": {
     "babel-loader": "^5.3.3",

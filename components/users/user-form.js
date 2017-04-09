@@ -5,10 +5,10 @@ class UserForm extends Component{
   onSubmit(e) {
     e.preventDefault();
 
-    const inputNode = this.refs.user;
+    const inputNode = this.refs.userName;
     const userName = inputNode.value;
 
-    this.props.addUser(userName);
+    this.props.setUserName(userName);
 
     inputNode.value = '';
   }
@@ -17,7 +17,7 @@ class UserForm extends Component{
     return(
       <form onSubmit={this.onSubmit.bind(this)}>
         <div className="form-group">
-          <input className="form-control" type="text" ref="user"/>
+          <input className="form-control" type="text" ref="userName" placeholder="Set Your Name..."/>
         </div>
       </form>
     )
@@ -25,7 +25,7 @@ class UserForm extends Component{
 }
 
 UserForm.propTypes = {
-  addUser: React.PropTypes.func.isRequired
+  setUserName: React.PropTypes.func.isRequired
 };
 
 export default UserForm

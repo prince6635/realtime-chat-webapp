@@ -33,7 +33,7 @@ class App extends Component{
     // TODO: get channel's messages
   }
 
-  addUser(name){
+  setUserName(name){
     let {users} = this.state;
     users.push({id: users.length, name});
     this.setState({users});
@@ -41,15 +41,11 @@ class App extends Component{
     // TODO: send to server
   }
 
-  setUser(activeUser) {
-    this.setState({activeUser});
-
-    // TODO: get User's messages
-  }
-
-  addMessage(value) {
-    let {messages} = this.state;
-    messages.push({id: messages.length, userName: this.state.activeUser.name, value});
+  addMessage(body) {
+    let {messages, users} = this.state;
+    let createdAt = new Date;
+    let author = users.length > 0 ? users[0].name : 'anonymous';
+    messages.push({id: messages.length, body, createdAt, author});
     this.setState({messages});
 
     // TODO: send to server
@@ -68,16 +64,14 @@ class App extends Component{
 
           <UserSection
             {...this.state}
-            setUser={this.setUser.bind(this)}
-            addUser={this.addUser.bind(this)}/>
+            setUserName={this.setUserName.bind(this)}/>
         </div>
 
-        <div className="messages-container">
-          <MessageSection
-            currentChannel={this.state.activeChannel}
-            messages={this.state.messages}
-            addMessage={this.addMessage.bind(this)}/>
-        </div>
+        <MessageSection
+          // currentChannel={this.state.activeChannel}
+          // messages={this.state.messages}
+          {...this.state}
+          addMessage={this.addMessage.bind(this)}/>
       </div>
     )
   }
