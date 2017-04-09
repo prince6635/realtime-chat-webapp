@@ -25,7 +25,7 @@
             * 1, create a addChannel() function in the ChannelSection
             * 2, pass the addChannel() function to the ChannelForm as a property
             * 3, in the ChannelForm's onSubmit() handler, call the passed addChannel() function
-    * Project structure: docs/project-structure.jpg
+    * Front end project structure: docs/project-structure.jpg
         * Front end build setup (docs/frontend-build-process.jpg)
             * tools: browserify & webpack(*)
             * running webpack: build the dependency of all JSX files and convert them to ES2015 syntax with babel
@@ -54,5 +54,41 @@
                 * channel-form.js: use ref instead of state object o access the typed input
                 * highlight the selected channel: need to set <li className="active"...> inside channel.js
                     * since we already save the active channel in state object, just need to pass as prop then use "activeChannel===channel"
+    * Connecting The Front End To The Back End
+        * ways: web sockets; flash sockets; polling; long polling...;
+        * web socket: communication protocol for server<->browser
+            * server could send data to the client without client polling the server
+            * more efficient than polling
+            * steps
+
+            ```
+            create a WebSocket:
+            let ws = new WebSocket('ws://site.com'); // server address
+
+            WebSocket Events:
+            ws.onmessage = (e) => {}
+            ws.onopen = () => {}
+            ws.onclose = () => {}
+            ws.onerror = () => {}
+
+            send message:
+            ws.send('message to send...');
+
+            message format:
+            let msg = {
+                name: 'event identifier', // based on this, the receiver will know how to process the message
+                data: {...}
+            };
+            ws.send(JSON.stringify(msg));
+
+            use http://websocket.org/echo.html as the WebSocket server address to test.
+            so you send a message to this address, it'll echo back to you.
+            ```
+
+            * Where in this app to create WebSocket?
+                * React lifecycle hooks: docs/react-lifecycle-hooks.jpg
+                * componentDidMount: called once after render
+
+
 * Tools
     * [Babel](https://babeljs.io/): transfer latest JS code syntax to ES2015
