@@ -77,6 +77,7 @@
             message format:
             let msg = {
                 name: 'event identifier', // based on this, the receiver will know how to process the message
+                // event naming convention: for name, use 'noun verb', like 'channel add'
                 data: {...}
             };
             ws.send(JSON.stringify(msg));
@@ -86,8 +87,47 @@
             ```
 
             * Where in this app to create WebSocket?
-                * React lifecycle hooks: docs/react-lifecycle-hooks.jpg
+                * React lifecycle hooks: docs/react-lifecycle-hooks.png
                 * componentDidMount: called once after render
+
+            * What channel events we need? docs/channel-events.jpg
+                * client to server
+                    * 'channel add'
+                    * 'channel subscribe': "Asks" the server to start sending channel data to us in real time,
+                        including initial channels and newly added channel.
+                    * 'channel unsubscribe': "Tells" the server to stop sending channel data to us
+                * sever to client
+                    * 'channel add'
+
+            * User events
+                * client to server
+                    * 'user edit': when user first enters, it shows "anonymous", so user can edit the name later on.
+                    * 'user subscribe'
+                    * 'user unsubscribe'
+                * server to client
+                    * 'user edit': will be sent to each client when one of the user has edited the name
+                    * 'user add'
+                    * 'user remove': will be sent to each client when a previous user closes the browser or disconnects
+
+            * Message events
+                * client to server
+                    * 'message add'
+                    * 'message subscribe'
+                    * 'message unsubscribe'
+                * sever to client
+                    * 'message add'
+
+            * socket.js: hide WebSocket boilerplate simpler interface
+                * EventEmitter(from nodejs): provide nice pattern for event based message passing.
+
+                ```
+                let ee = new EventEmitter();
+                ee.on('channel add', addChannel); // add a event listener(subscribe)
+                function addChannel(channel) {...}
+                ee.emit('channel add', message); // send message
+                ```
+
+                !!! NOTE: compare the previous diff to make sure the difference between ee.emit and socket.emit
 
 
 * Tools
