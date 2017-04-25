@@ -129,6 +129,7 @@
                 ```
 
                 !!! NOTE: compare the previous diff (commit 07ead5ede4ed93480dff1c01f7a3e2b2ea88e232) to make sure the difference between ee.emit and socket.emit
+    * Debug front end: Chrome developer tool
 
     * Backend server
         * Golang: https://github.com/prince6635/realtime-chat-webapp-backend

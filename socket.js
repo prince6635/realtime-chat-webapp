@@ -13,10 +13,10 @@
   ee.emit('channel add', message); // send message
 * */
 
-import {EventEmitter} from 'events';
+import EventEmitter from 'events';
 
 class Socket {
-  constructor(ws = new WebSocket(), ee = EventEmitter()){
+  constructor(ws = new WebSocket(), ee = new EventEmitter()){
     this.ws = ws;
     this.ee = ee;
 
